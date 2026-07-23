@@ -1,31 +1,55 @@
+const data1 = {
+  name: null,
+  state: 'moderating',
+};
+
+const data2 = {
+  name: 'Códica',
+  state: 'published',
+};
+
+let object;
+
 const data = {
-  user: 'ubuntu',
-  hosts: {
-    0: {
-      name: 'web1',
-    },
-    1: {
-      name: 'web2',
-      null: 3,
-      active: false,
-    },
-  },
+  key2: 'value3',
+  key3: 'val',
+  key4: 'boom!',
+  key: 'another value',
 };
 
 
-const fill = (data1,name, data2) => {
-  
+
+
+const fill = (data1, names, data2) => {
+  if (names.length < 1){
+    Object.assign(data1, data2);
+    return data1
+  }
+
+  let data1Array = Object.entries(data1);
+
+  for (const name of names){
+ 
+      if (Object.hasOwn(data1, name)){
+        data1[name] = data2[name];
+      }
+
+  }
+  return data1
 }
 
 
-console.log(get(data, ['hosts', 0]));
+console.log(fill(data1, ['name'], data2));
 
-// get(data, ['undefined']); // null
-// get(data, ['user']); // 'ubuntu'
-// get(data, ['user', 'ubuntu']); // null
-// get(data, ['hosts', 1, 'name']); // 'web2'
-// get(data, ['hosts', 0]); // { name: 'web1' }
-// get(data, ['hosts', 1, null]); // 3
-// get(data, ['hosts', 1, 'active']); // false
-// get(data, []); // { user: 'ubuntu', hosts: { 0: { name: 'web1' }, 1: { name: 'web2', null: 3, active: false }}}
+// // Las llamadas a continuación deben considerarse independientes
 
+// fill(company, ['name'], data);
+// // {
+// //   name: 'Códica',
+// //   state: 'moderating',
+// // }
+
+// fill(company, [], data);
+// // {
+// //   name: 'Códica',
+// //   state: 'published',
