@@ -23,7 +23,24 @@ const tree = mkdir('/', [
 
 
 // BEGIN (write your solution here)
-du
+const du = (tree) => {
+    const calculateSize = (node) => {
+        if (isFile(node)) {
+            return getMeta(node).size || 0;
+        }
+        const children = getChildren(node);
+        const sizes = children.map(calculateSize);
+        return _.sum(sizes);
+    };
+    const children = getChildren(tree);
+
+    const result = children.map((child) => {
+        return [getName(child), calculateSize(child)];
+    });
+        return result.sort((a, b) => b[1] - a[1]);
+
+
+}
 // END
 
 console.log(du(tree));
