@@ -1,6 +1,6 @@
 // @ts-check
 
-const getGcd = (a, b) => ((a % b) ? getGcd(b, a % b) : Math.abs(b));
+const getGcd = (a = Number, b= Number) => ((a % b) ? getGcd(b, a % b) : Math.abs(b));
 
 
 // BEGIN (write your solution here)
