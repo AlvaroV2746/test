@@ -23,7 +23,6 @@ const getInvalidBooks = (books) => {
             return book
         }
         return null
-
     })
 
     return outcome.filter(item => item !== null);
